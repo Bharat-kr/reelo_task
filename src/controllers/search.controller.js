@@ -31,9 +31,9 @@ const generatePaper = (req, res) => {
         "Please provide total marks for question paper"
       );
 
-    let marks_alloted_easy = (marks * easy) / 100;
-    let marks_alloted_medium = (marks * medium) / 100;
-    let marks_alloted_hard = (marks * hard) / 100;
+    let marks_alloted_easy = Math.round((marks * easy) / 100);
+    let marks_alloted_medium = Math.round((marks * medium) / 100);
+    let marks_alloted_hard = marks - marks_alloted_easy - marks_alloted_medium; //as it will not be possible to generate question with frational marks we are trying to get the closest percentage as specified possible
 
     const selectedQuestions = [
       ...getRandomQuestions(easy_questions, marks_alloted_easy),
